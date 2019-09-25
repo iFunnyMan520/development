@@ -5,7 +5,8 @@
     <title>Confirm Code</title>
 </head>
 <body>
-    <form action="/phone/confirm_code/confirming" method="post">
+    {{ message }}
+    <form action="/phone/confirm/enter" method="post">
         <h2>Confirm Code</h2>
         <input type="text" name="confirm">
         <button>Submit</button>
