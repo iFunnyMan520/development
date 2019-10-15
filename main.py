@@ -6,6 +6,11 @@ app = Flask(__name__)
 Random = int(random.random()*10000)
 
 
+@app.route('/')
+def main_page():
+    return render_template('main.html')
+
+
 @app.route('/phone/', methods=['get'])
 def phone():
     return render_template('phone.html')

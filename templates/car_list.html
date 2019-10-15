@@ -1,0 +1,59 @@
+{% block styles %}
+    <style>
+        .card-img-left {
+            max-height: 150px;
+            float: left;
+        }
+    </style>
+{% endblock %}
+<div class="container" style="padding-top: 30px" id="listOfCars">
+
+</div>
+
+{% block scripts %}
+    <script>
+    let mobiles = [
+        {
+            name: 'Volkswagen Golf VII Variant 1.6 TDI R-line/Pano/ACC/LED/Nav',
+            description: 'EU-Ausführung, Kombi, Diesel, Schaltgetriebe, 4/5 Türen',
+            image: 'https://i.ebayimg.com/00/s/NDgwWDY0MA==/z/4VcAAOSwnSJdncYC/$_20.jpg',
+            price: 24500
+        },
+        {
+            name: 'VVolkswagen Golf Variant 2.0 TDI Comfortline AHK ACC NAVI',
+            description: '4,3 l/100km (komb.)*, 111 g CO₂/km (komb.)*',
+            image: 'https://i.ebayimg.com/00/s/MTIwMFgxNjAw/z/EN4AAOSwtN5bJioY/$_20.jpg',
+            price: 25580
+        },
+        {
+            name: 'Volkswagen Golf Variant "IQ DRIVE" 2.0TDI DSG LED NAVI',
+            description: 'Deutsche Ausführung, Kombi, Diesel, Automatik, 4/5 Türen',
+            image: 'https://i.ebayimg.com/00/s/NDgwWDY0MA==/z/JOUAAOSwBw5dm2-D/$_20.jpg',
+            price: 35155
+        },
+    ];
+    window.createCarCard = function (name, description, image, price) {
+        return `
+    <div class="card w-75">
+        <div class="card-body text-right">
+            <img class="card-img-left" src="${image}">
+            <h5 class="card-title">${name}</h5>
+            <p class="card-text">${description}</p>
+            <p class="card-text">${price}$</p>
+        </div>
+        <div class="card-footer">
+            <button class="btn  my-2 my-sm-0" type="submit">Contact</button>
+            <button class="btn  my-2 my-sm-0" type="submit">Park</button>
+        </div>
+    </div>`
+    };
+    window.insertCars = function () {
+        let listOfCars = document.getElementById('listOfCars');
+        mobiles.forEach(function (carObject) {
+            listOfCars.innerHTML += window.createCarCard(
+                carObject.name, carObject.description, carObject.image, carObject.price)
+        })
+    };
+    window.insertCars();
+    </script>
+{% endblock %}
