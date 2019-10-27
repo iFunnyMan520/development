@@ -1,21 +1,41 @@
-from flask import Flask, render_template, request
-from sqlalchemy import create_engine, Column, Integer, String
-from sqlalchemy.ext.declarative import declarative_base
-from sqlalchemy.orm import sessionmaker
-
-Base = declarative_base()
-engine = create_engine('sqlite:///foo.db')
-Session = sessionmaker(bind=engine)
-session = Session()
+from flask import Flask
+from flask_sqlalchemy import SQLAlchemy
 
 
-class User(Base):
+app = Flask(__name__)
+app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///foo.db'
+db = SQLAlchemy(app)
+
+
+class User(db.Model):
     __tablename__ = 'users'
 
-    id = Column(Integer, primary_key=True)
-    phone = Column(String)
-    code = Column(String)
+    id = db.Column(db.Integer, primary_key=True)
+    phone = db.Column(db.String)
+    code = db.Column(db.String)
 
 
-Base.metadata.create_all(engine)
+class Car(db.Model):
+    __tablename__ = 'cars'
+
+    id = db.Column(db.Integer, primary_key=True)
+    brand = db.Column(db.String(100))
+    model = db.Column(db.String(100))
+    manifacture = db.Column(db.String(100))
+    year = db.Column(db.DateTime)
+
+
+class Advt(db.Model):
+    __tablename__ = 'advt'
+
+    id = db.Column(db.Integer, primary_key=True)
+    name = db.Column(db.String(100))
+    user_id = db.Column(db.Integer, db.ForeignKey('users.id'))
+    user = db.relationship('User', backref='users')
+    car_id = db.Column(db.Integer, db.ForeignKey('cars.id'))
+    car = db.relationship('Car', backref='cars')
+    description = db.Column(db.String(350))
+    price = db.Column(db.Float)
+    created_at = db.Column(db.DateTime)
+
 

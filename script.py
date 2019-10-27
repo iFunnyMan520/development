@@ -1,4 +1,4 @@
-from models.test_db import Base, engine
+from models.test_db import db
 
 if __name__ == "__main__":
-    Base.metadata.create_all(engine)
+    db.create_all()

@@ -11,4 +11,6 @@ pip install -r requirements.txt
 ```
 # Run server on http://localhost:5000/
 python main.py
+# Create database
+python script.py
 ```

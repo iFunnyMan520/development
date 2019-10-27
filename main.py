@@ -1,8 +1,7 @@
-from models.test_db import session, User, Flask, render_template, request
-from flask import Response, redirect
+from models.test_db import User, db, app
+from flask import Response, render_template, request
 import random
 
-app = Flask(__name__)
 Random = int(random.random()*10000)
 
 
@@ -24,16 +23,16 @@ def confirm():
         return render_template('phone.html', message="Wrong phone number. Try it again")
     else:
         resp.set_cookie('phone', phone_number)
-        your_phone = session.query(User).filter_by(phone=phone_number).first()
+        your_phone = db.session.query(User).filter_by(phone=phone_number).first()
         if not your_phone:
             user1 = User(phone=phone_number, code=Random)
-            session.add(user1)
-            session.commit()
+            db.session.add(user1)
+            db.session.commit()
             return resp
         else:
             your_phone.code = Random
-            session.add(your_phone)
-            session.commit()
+            db.session.add(your_phone)
+            db.session.commit()
             return resp
 
 
@@ -41,7 +40,7 @@ def confirm():
 def enter():
 
     conf = request.form.get('confirm')
-    your_phone = session.query(User).filter_by(phone=request.cookies.get('phone')).first()
+    your_phone = db.session.query(User).filter_by(phone=request.cookies.get('phone')).first()
     if your_phone.code == conf:
         return 'OK'
     else:
