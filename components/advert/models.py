@@ -1,18 +1,4 @@
-from flask import Flask
-from flask_sqlalchemy import SQLAlchemy
-
-
-app = Flask(__name__)
-app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///foo.db'
-db = SQLAlchemy(app)
-
-
-class User(db.Model):
-    __tablename__ = 'users'
-
-    id = db.Column(db.Integer, primary_key=True)
-    phone = db.Column(db.String)
-    code = db.Column(db.String)
+from settings import db
 
 
 class Car(db.Model):
@@ -21,7 +7,7 @@ class Car(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     brand = db.Column(db.String(100))
     model = db.Column(db.String(100))
-    manifacture = db.Column(db.String(100))
+    manufacture = db.Column(db.String(100))
     year = db.Column(db.DateTime)
 
 
@@ -37,5 +23,3 @@ class Advt(db.Model):
     description = db.Column(db.String(350))
     price = db.Column(db.Float)
     created_at = db.Column(db.DateTime)
-
-

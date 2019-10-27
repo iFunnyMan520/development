@@ -1,4 +1,9 @@
-from models.test_db import db
+from components.users.models import *
+from components.advert.models import *
+
+from server import db, app
+
 
 if __name__ == "__main__":
-    db.create_all()
+    with app.app_context():
+        db.create_all()
