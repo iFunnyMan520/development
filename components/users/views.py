@@ -62,6 +62,8 @@ def advt():
             'description': adverts_iterator.description,
             'price': adverts_iterator.price,
             'created_at': adverts_iterator.created_at,
+            'image': 'https://vectorskey.com/wp-content/uploads'
+                     '/2019/01/police-car.png'
         }
         adverts_list.append(adverts_dict)
 

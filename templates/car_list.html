@@ -12,26 +12,23 @@
 
 {% block scripts %}
     <script>
-    let mobiles = [
-        {
-            name: 'Volkswagen Golf VII Variant 1.6 TDI R-line/Pano/ACC/LED/Nav',
-            description: 'EU-Ausführung, Kombi, Diesel, Schaltgetriebe, 4/5 Türen',
-            image: 'https://i.ebayimg.com/00/s/NDgwWDY0MA==/z/4VcAAOSwnSJdncYC/$_20.jpg',
-            price: 24500
-        },
-        {
-            name: 'VVolkswagen Golf Variant 2.0 TDI Comfortline AHK ACC NAVI',
-            description: '4,3 l/100km (komb.)*, 111 g CO₂/km (komb.)*',
-            image: 'https://i.ebayimg.com/00/s/MTIwMFgxNjAw/z/EN4AAOSwtN5bJioY/$_20.jpg',
-            price: 25580
-        },
-        {
-            name: 'Volkswagen Golf Variant "IQ DRIVE" 2.0TDI DSG LED NAVI',
-            description: 'Deutsche Ausführung, Kombi, Diesel, Automatik, 4/5 Türen',
-            image: 'https://i.ebayimg.com/00/s/NDgwWDY0MA==/z/JOUAAOSwBw5dm2-D/$_20.jpg',
-            price: 35155
-        },
-    ];
+    window.api = {};
+    window.api.getRecommendedAds = function () {
+        let request = new XMLHttpRequest();
+        request.onreadystatechange = function () {
+            if(this.readyState === XMLHttpRequest.DONE) {
+                let mobiles = JSON.parse(this.response);
+                let listOfCars = document.getElementById('listOfCars');
+
+                mobiles.forEach(function (carObject) {
+                    listOfCars.innerHTML += window.createCarCard(
+                        carObject.name, carObject.description, carObject.image, carObject.price)
+                })
+            }
+        };
+        request.open('GET', '/advt/');
+        request.send()
+    };
     window.createCarCard = function (name, description, image, price) {
         return `
     <div class="card w-75">
@@ -47,13 +44,6 @@
         </div>
     </div>`
     };
-    window.insertCars = function () {
-        let listOfCars = document.getElementById('listOfCars');
-        mobiles.forEach(function (carObject) {
-            listOfCars.innerHTML += window.createCarCard(
-                carObject.name, carObject.description, carObject.image, carObject.price)
-        })
-    };
-    window.insertCars();
+    window.api.getRecommendedAds();
     </script>
 {% endblock %}
