@@ -45,7 +45,3 @@ def enter():
     else:
         return render_template('phone.html',
                                message="Wrong confirm code. Try it again")
-
-
-
-

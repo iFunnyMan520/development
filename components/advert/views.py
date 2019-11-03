@@ -11,15 +11,17 @@ def advt():
             'id': adverts_iterator.id,
             'name': adverts_iterator.name,
             'user': {
-                'user_id': adverts_iterator.user.id,
-                'user_name': adverts_iterator.user.phone
+                'id': adverts_iterator.user.id,
+                'name': adverts_iterator.user.phone
             },
             'car': {
-                'car_id': adverts_iterator.car.id,
-                'car_brand': adverts_iterator.car.brand,
-                'car_model': adverts_iterator.car.model,
-                'car_manufacture': adverts_iterator.car.manufacture,
-                'car_year': adverts_iterator.car.year
+                'id': adverts_iterator.car.id,
+                'brand': adverts_iterator.car.brand,
+                'model': adverts_iterator.car.model,
+                'manufacture': adverts_iterator.car.manufacture,
+                'year': adverts_iterator.car.year,
+                'image': 'https://vectorskey.com/wp-content/uploads'
+                         '/2019/01/police-car.png'
             },
             'description': adverts_iterator.description,
             'price': adverts_iterator.price,

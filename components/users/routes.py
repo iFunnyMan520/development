@@ -1,7 +1,7 @@
 from flask import Flask
 
 from components.users import views
-from components.advert import views
+
 
 def install(app: Flask):
     app.add_url_rule(
@@ -10,5 +10,3 @@ def install(app: Flask):
         '/phone/confirm', view_func=views.confirm, methods=['POST'])
     app.add_url_rule(
         '/phone/confirm/enter', view_func=views.enter, methods=['POST'])
-    app.add_url_rule(
-        '/advt/', view_func=views.advt, methods=['GET'])

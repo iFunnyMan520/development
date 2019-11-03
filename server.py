@@ -2,6 +2,7 @@ import random
 from flask import render_template, Flask
 
 from components.users.routes import install as user_routes
+from components.advert.routes import install as ads_routes
 from settings import conf, db
 
 Random = int(random.random()*10000)
@@ -20,4 +21,5 @@ def main_page():
 
 if __name__ == "__main__":
     user_routes(app)
+    ads_routes(app)
     app.run(debug=True)

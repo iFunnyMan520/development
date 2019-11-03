@@ -17,12 +17,14 @@
         let request = new XMLHttpRequest();
         request.onreadystatechange = function () {
             if(this.readyState === XMLHttpRequest.DONE) {
-                let mobiles = JSON.parse(this.response);
+                let ads = JSON.parse(this.response);
                 let listOfCars = document.getElementById('listOfCars');
 
-                mobiles.forEach(function (carObject) {
+                ads.forEach(function (adsObject) {
+                    let car = adsObject.car;
+                    let adsName = `${car.brand} ${car.model} ${car.manufacture} ${car.year}`
                     listOfCars.innerHTML += window.createCarCard(
-                        carObject.name, carObject.description, carObject.image, carObject.price)
+                        adsName, adsObject.description, car.image, adsObject.price)
                 })
             }
         };
