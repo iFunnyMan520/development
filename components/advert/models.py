@@ -8,7 +8,7 @@ class Car(db.Model):
     brand = db.Column(db.String(100))
     model = db.Column(db.String(100))
     manufacture = db.Column(db.String(100))
-    year = db.Column(db.DateTime)
+    year = db.Column(db.Integer)
 
 
 class Advt(db.Model):
@@ -22,4 +22,4 @@ class Advt(db.Model):
     car = db.relationship('Car', backref='cars')
     description = db.Column(db.String(350))
     price = db.Column(db.Float)
-    created_at = db.Column(db.DateTime)
+    created_at = db.Column(db.Integer)

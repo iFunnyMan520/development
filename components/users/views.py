@@ -1,7 +1,9 @@
 import random
+import json
 
-from flask import render_template, Response, request
+from flask import render_template, Response, request, jsonify
 from components.users.models import User
+from components.advert.models import Car, Advt
 
 from settings import db
 
@@ -44,3 +46,24 @@ def enter():
     else:
         return render_template('phone.html',
                                message="Wrong confirm code. Try it again")
+
+
+def advt():
+    adverts = Advt.query.all()
+    adverts_list = list()
+    adverts_dict = dict()
+    for adverts_iterator in adverts:
+        adverts_dict = {
+            'id': adverts_iterator.id,
+            'name': adverts_iterator.name,
+            'user_id': adverts_iterator.user_id,
+            'user': adverts_iterator.user,
+            #'car': adverts_iterator.car,
+            'description': adverts_iterator.description,
+            'price': adverts_iterator.price,
+            'created_at': adverts_iterator.created_at,
+        }
+        adverts_list.append(adverts_dict)
+
+    return json.dumps(adverts_list)
+

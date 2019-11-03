@@ -5,8 +5,10 @@ from components.users import views
 
 def install(app: Flask):
     app.add_url_rule(
-        '/phone/', view_func=views.confirm, methods=['GET'])
+        '/phone/', view_func=views.phone, methods=['GET'])
     app.add_url_rule(
         '/phone/confirm', view_func=views.confirm, methods=['POST'])
     app.add_url_rule(
-        '/phone/confirm/enter', view_func=views.confirm, methods=['POST'])
+        '/phone/confirm/enter', view_func=views.enter, methods=['POST'])
+    app.add_url_rule(
+        '/advt/', view_func=views.advt, methods=['GET'])
