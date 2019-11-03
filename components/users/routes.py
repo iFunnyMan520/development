@@ -1,7 +1,7 @@
 from flask import Flask
 
 from components.users import views
-
+from components.advert import views
 
 def install(app: Flask):
     app.add_url_rule(
