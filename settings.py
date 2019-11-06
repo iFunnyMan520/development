@@ -6,6 +6,7 @@ class DevConfig:
     ENV = 'development'
 
     SQLALCHEMY_DATABASE_URI = 'sqlite:///foo.db'
+    SECRET_KEY = 'mysecret'
     SQLALCHEMY_TRACK_MODIFICATIONS = False
 
 

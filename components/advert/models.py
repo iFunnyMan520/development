@@ -20,6 +20,6 @@ class Advt(db.Model):
     user = db.relationship('User', backref='users')
     car_id = db.Column(db.Integer, db.ForeignKey('cars.id'))
     car = db.relationship('Car', backref='cars')
-    description = db.Column(db.String(350))
+    description = db.Column(db.Text)
     price = db.Column(db.Float)
     created_at = db.Column(db.Integer)
