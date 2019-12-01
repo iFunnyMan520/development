@@ -8,7 +8,7 @@ response = requests.post('https://weblabapi.com/ads/list',
 
 commit_data = response.json()
 
-
+model = ''
 count = 0
 
 while count < 35:
@@ -17,10 +17,8 @@ while count < 35:
     r = requests.post('https://weblabapi.com/ads/getBySeo', data={'seo': seo})
     c_data = r.json()
     brand = c_data['ad']['brand']
-    #if list(c_data['ad'].keys())[28] == 'product':
-    model = c_data['ad']['product']['model']
-    #else:
-        #continue
+    if list(c_data['ad'].keys())[27] == 'product':
+        model = c_data['ad']['product']['model']
     title = c_data['ad']['title']
     description = c_data['ad']['description']
     phone = c_data['ad']['user']['phones'][0]['phone']
