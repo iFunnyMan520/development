@@ -31,7 +31,9 @@ while count < 35:
 
     one = User(phone=phone, name=user_name)
     two = Car(brand=brand, model=model)
-    three = Advt(name=title, description=description, price=price)
+    three = Advt(name=title, user=User(name=user_name), car=Car(brand=brand),
+                 description=description,
+                 price=price)
 
     if __name__ == "__main__":
         with app.app_context():
