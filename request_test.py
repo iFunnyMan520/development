@@ -29,15 +29,14 @@ while count < 35:
     user_name = c_data['ad']['user']['name']
     price = c_data['ad']['price']
 
-    one = User(phone=phone, name=user_name)
-    two = Car(brand=brand, model=model)
-    three = Advt(name=title, user=User(name=user_name), car=Car(brand=brand),
+    one = Advt(name=title, user=User(phone=phone, name=user_name), car=Car(
+        brand=brand, model=model),
                  description=description,
                  price=price)
 
     if __name__ == "__main__":
         with app.app_context():
-            db.session.add_all([one, two, three])
+            db.session.add_all([one])
             db.session.commit()
 
 
