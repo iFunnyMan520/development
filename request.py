@@ -26,18 +26,23 @@ while count < 35:
     title = c_data['ad']['titleCompiled']
     description = c_data['ad']['description']
     phone = c_data['ad']['user']['phones'][0]['phone']
-    user_name = c_data['ad']['user']['name']
+    user_name = c_data['ad']['user']['username']
     price = c_data['ad']['price']
 
-    one = Advt(name=title, user=User(phone=phone, name=user_name), car=Car(
-        brand=brand, model=model),
-                 description=description,
-                 price=price)
+    def req(name, phone_user, user, brand_name, model_name, description_advt,
+            price_car):
+        one = Advt(name=name, user=User(phone=phone_user, name=user), car=Car(
+            brand=brand_name, model=model_name),
+                   description=description_advt,
+                   price=price_car)
+        db.session.add_all([one])
+        db.session.commit()
+
 
     if __name__ == "__main__":
         with app.app_context():
-            db.session.add_all([one])
-            db.session.commit()
+            req(title, phone, user_name, brand, model, description, price)
+
 
 
 
